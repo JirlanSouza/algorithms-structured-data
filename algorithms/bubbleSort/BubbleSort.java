@@ -8,7 +8,7 @@ public class BubbleSort {
         }
 
         System.out.println();
-        int[] sortedData = BubbleSort.otimizedSort(unsortedData, false);
+        int[] sortedData = BubbleSort.optimizedSort(unsortedData, false);
 
         for (int data : sortedData) {
             System.out.print(data + ", ");
@@ -33,7 +33,7 @@ public class BubbleSort {
         return data;
     }
 
-    public static int[] otimizedSort(int[] data, boolean desc) {
+    public static int[] optimizedSort(int[] data, boolean desc) {
         boolean swaping = true;
         int swap;
         int iterator = 0;
