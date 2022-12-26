@@ -17,6 +17,12 @@ public class BubbleSort {
         System.out.println();
     }
 
+    /*
+     * Complexidade assintótica
+     * Pior caso: O(n²)
+     * Melhor caso: Ω(n²)
+     */
+
     public static int[] sort(int[] data, boolean desc) {
         int swap;
         for (int i = 1; i < data.length; i++) {
@@ -32,6 +38,12 @@ public class BubbleSort {
 
         return data;
     }
+
+    /*
+     * Complexidade assintótica
+     * Pior caso: O(n²)
+     * Melhor caso: Ω(n)
+     */
 
     public static int[] optimizedSort(int[] data, boolean desc) {
         boolean swaping = true;
