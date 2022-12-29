@@ -39,24 +39,24 @@ public class MergeSort {
     }
 
     private static void intercalate(int[] data, int[] left, int[] right) {
-        int i = 0;
-        int j = 0;
-        int k = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int dataIndex = 0;
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                data[k++] = left[i++];
+        while (leftIndex < left.length && rightIndex < right.length) {
+            if (left[leftIndex] <= right[rightIndex]) {
+                data[dataIndex++] = left[leftIndex++];
             } else {
-                data[k++] = right[j++];
+                data[dataIndex++] = right[rightIndex++];
             }
         }
 
-        while (i < left.length) {
-            data[k++] = left[i++];
+        while (leftIndex < left.length) {
+            data[dataIndex++] = left[leftIndex++];
         }
 
-        while (j < right.length) {
-            data[k++] = right[j++];
+        while (rightIndex < right.length) {
+            data[dataIndex++] = right[rightIndex++];
         }
 
     }
