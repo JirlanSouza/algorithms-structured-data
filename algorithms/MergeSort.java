@@ -35,7 +35,7 @@ public class MergeSort {
 
         MergeSort.merge(left, mid);
         MergeSort.merge(right, length - mid);
-        MergeSort.intercalate(data, left, right);
+        MergeSort.intercalateOtimized(data, left, right);
     }
 
     private static void intercalate(int[] data, int[] left, int[] right) {
@@ -57,6 +57,28 @@ public class MergeSort {
 
         while (rightIndex < right.length) {
             data[dataIndex++] = right[rightIndex++];
+        }
+
+    }
+
+    private static void intercalateOtimized(int[] data, int[] left, int[] right) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        for (int dataIndex = 0; dataIndex < data.length; dataIndex++) {
+            if (leftIndex >= left.length) {
+                data[dataIndex] = right[rightIndex++];
+
+            } else if (rightIndex >= right.length) {
+                data[dataIndex] = left[leftIndex++];
+
+            } else if (left[leftIndex] < right[rightIndex]) {
+                data[dataIndex] = left[leftIndex++];
+
+            } else {
+                data[dataIndex] = right[rightIndex++];
+            }
+
         }
 
     }
