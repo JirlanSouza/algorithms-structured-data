@@ -19,19 +19,13 @@ public class MergeSort {
     }
 
     private static void merge(int[] data, int length) {
-        if (length < 2)
+        if (length < 2) {
             return;
+        }
+
         int mid = length / 2;
-        int[] left = new int[mid];
-        int[] right = new int[length - mid];
-
-        for (int i = 0; i < mid; i++) {
-            left[i] = data[i];
-        }
-
-        for (int i = mid; i < length; i++) {
-            right[i - mid] = data[i];
-        }
+        int[] left = MergeSort.copyDataSlice(data, 0, mid);
+        int[] right = MergeSort.copyDataSlice(data, mid, length);
 
         MergeSort.merge(left, mid);
         MergeSort.merge(right, length - mid);
@@ -81,5 +75,14 @@ public class MergeSort {
 
         }
 
+    }
+
+    private static int[] copyDataSlice(int[] data, int start, int end) {
+        int[] dataSlice = new int[end - start];
+        for (int i = start; i < end; i++) {
+            dataSlice[i - start] = data[i];
+        }
+
+        return dataSlice;
     }
 }
