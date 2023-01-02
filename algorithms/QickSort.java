@@ -13,6 +13,12 @@ public class QickSort {
         System.out.println();
     }
 
+    /*
+     * Complexidade assintótica
+     * Pior caso: O(n log n)
+     * Melhor caso: Ω(n²)
+     */
+
     public static int[] sort(int[] list) {
         QickSort.quickSort(list, 0, list.length - 1);
         return list;
