@@ -15,8 +15,8 @@ public class QickSort {
 
     /*
      * Complexidade assintótica
-     * Pior caso: O(n log n)
-     * Melhor caso: Ω(n²)
+     * Pior caso: O(n²)
+     * Melhor caso: Ω(n log n)
      */
 
     public static int[] sort(int[] list) {
