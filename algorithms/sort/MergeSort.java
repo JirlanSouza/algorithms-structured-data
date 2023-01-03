@@ -1,3 +1,5 @@
+package sort;
+
 public class MergeSort {
     public static void main(String[] args) {
         int[] unsortedData = new int[] { 451, 53, 396, 839, 225, 438, 575, 523, 977, 738, 484, 995, 42, 447, 998, 513,
