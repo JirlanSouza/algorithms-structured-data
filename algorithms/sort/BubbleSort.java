@@ -1,24 +1,6 @@
 package sort;
 
 public class BubbleSort {
-    public static void main(String[] args) {
-        int[] unsortedData = new int[20];
-
-        for (int i = 0; i < unsortedData.length; i++) {
-            unsortedData[i] = (int) Math.round(Math.random() * 1000);
-            System.out.print(unsortedData[i] + ", ");
-        }
-
-        System.out.println();
-        int[] sortedData = BubbleSort.optimizedSort(unsortedData, false);
-
-        for (int data : sortedData) {
-            System.out.print(data + ", ");
-        }
-
-        System.out.println();
-    }
-
     /*
      * Complexidade assintótica
      * Pior caso: O(n²)

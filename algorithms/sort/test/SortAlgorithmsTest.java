@@ -1,5 +1,6 @@
 package sort.test;
 
+import sort.BubbleSort;
 import sort.QuickSort;
 
 public class SortAlgorithmsTest {
@@ -19,23 +20,44 @@ public class SortAlgorithmsTest {
 
     public static void main(String[] args) {
         quickSortTest();
+        bublleSortTest();
     }
 
     private static void quickSortTest() {
+        printNewTest("QUICK SORT TEST");
         printList("Any list", Color.BLUE, testLists.any());
-        int[] sortedAnyList = QuickSort.sort(testLists.any());
+        int[] sortedAnyList = QuickSort.sort(testLists.any().clone());
         printList("Sorted Any list", Color.GREEN, sortedAnyList);
 
         printList("Already sorted list", Color.BLUE, testLists.alreadySorted());
-        int[] sortedAlreadySortedList = QuickSort.sort(testLists.alreadySorted());
+        int[] sortedAlreadySortedList = QuickSort.sort(testLists.alreadySorted().clone());
         printList("Sorted Alreaddy list", Color.GREEN, sortedAlreadySortedList);
 
         printList("inverse list", Color.BLUE, testLists.inversedSorted());
-        int[] sortedInverseList = QuickSort.sort(testLists.inversedSorted());
+        int[] sortedInverseList = QuickSort.sort(testLists.inversedSorted().clone());
         printList("Sorted Inversy list", Color.GREEN, sortedInverseList);
 
         printList("Repeated list", Color.BLUE, testLists.repeadted());
-        int[] sortedRepeatedList = QuickSort.sort(testLists.repeadted());
+        int[] sortedRepeatedList = QuickSort.sort(testLists.repeadted().clone());
+        printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
+    }
+
+    private static void bublleSortTest() {
+        printNewTest("BUBBLE SORT TEST");
+        printList("Any list", Color.BLUE, testLists.any());
+        int[] sortedAnyList = BubbleSort.sort(testLists.any().clone(), false);
+        printList("Sorted Any list", Color.GREEN, sortedAnyList);
+
+        printList("Already sorted list", Color.BLUE, testLists.alreadySorted());
+        int[] sortedAlreadySortedList = BubbleSort.sort(testLists.alreadySorted().clone(), false);
+        printList("Sorted Alreaddy list", Color.GREEN, sortedAlreadySortedList);
+
+        printList("inverse list", Color.BLUE, testLists.inversedSorted());
+        int[] sortedInverseList = BubbleSort.sort(testLists.inversedSorted().clone(), false);
+        printList("Sorted Inversy list", Color.GREEN, sortedInverseList);
+
+        printList("Repeated list", Color.BLUE, testLists.repeadted());
+        int[] sortedRepeatedList = BubbleSort.sort(testLists.repeadted().clone(), false);
         printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
     }
 
@@ -50,6 +72,11 @@ public class SortAlgorithmsTest {
         formetedPrefix.delete(formetedPrefix.length() - 2, formetedPrefix.length() - 1);
         formetedPrefix.append("\n");
         System.out.println(formetedPrefix);
+    }
+
+    private static void printNewTest(String name) {
+        String testHeader = String.format("\u001b[%d;1m %-150s\u001b[0m \n", Color.BLUE.getValue(), name);
+        System.out.println(testHeader);
     }
 
 }
