@@ -1,20 +1,6 @@
 package sort;
 
 public class MergeSort {
-    public static void main(String[] args) {
-        int[] unsortedData = new int[] { 451, 53, 396, 839, 225, 438, 575, 523, 977, 738, 484, 995, 42, 447, 998, 513,
-                808, 26, 283, 830 };
-
-        System.out.println();
-        int[] sortedData = MergeSort.sort(unsortedData);
-
-        for (int data : sortedData) {
-            System.out.print(data + ", ");
-        }
-
-        System.out.println();
-    }
-
     public static int[] sort(int[] data) {
         MergeSort.merge(data, data.length);
         return data;

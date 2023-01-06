@@ -1,6 +1,7 @@
 package sort.test;
 
 import sort.BubbleSort;
+import sort.MergeSort;
 import sort.QuickSort;
 
 public class SortAlgorithmsTest {
@@ -21,6 +22,7 @@ public class SortAlgorithmsTest {
     public static void main(String[] args) {
         quickSortTest();
         bublleSortTest();
+        mergeSortTest();
     }
 
     private static void quickSortTest() {
@@ -58,6 +60,25 @@ public class SortAlgorithmsTest {
 
         printList("Repeated list", Color.BLUE, testLists.repeadted());
         int[] sortedRepeatedList = BubbleSort.sort(testLists.repeadted().clone(), false);
+        printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
+    }
+
+    private static void mergeSortTest() {
+        printNewTest("MERGE SORT TEST");
+        printList("Any list", Color.BLUE, testLists.any());
+        int[] sortedAnyList = MergeSort.sort(testLists.any().clone());
+        printList("Sorted Any list", Color.GREEN, sortedAnyList);
+
+        printList("Already sorted list", Color.BLUE, testLists.alreadySorted());
+        int[] sortedAlreadySortedList = MergeSort.sort(testLists.alreadySorted().clone());
+        printList("Sorted Alreaddy list", Color.GREEN, sortedAlreadySortedList);
+
+        printList("inverse list", Color.BLUE, testLists.inversedSorted());
+        int[] sortedInverseList = MergeSort.sort(testLists.inversedSorted().clone());
+        printList("Sorted Inversy list", Color.GREEN, sortedInverseList);
+
+        printList("Repeated list", Color.BLUE, testLists.repeadted());
+        int[] sortedRepeatedList = MergeSort.sort(testLists.repeadted().clone());
         printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
     }
 
