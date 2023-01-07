@@ -1,5 +1,6 @@
 package sort.test;
 
+import sort.BinaryHeap;
 import sort.BubbleSort;
 import sort.MergeSort;
 import sort.QuickSort;
@@ -23,6 +24,7 @@ public class SortAlgorithmsTest {
         quickSortTest();
         bublleSortTest();
         mergeSortTest();
+        heapSortTest();
     }
 
     private static void quickSortTest() {
@@ -79,6 +81,25 @@ public class SortAlgorithmsTest {
 
         printList("Repeated list", Color.BLUE, testLists.repeadted());
         int[] sortedRepeatedList = MergeSort.sort(testLists.repeadted().clone());
+        printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
+    }
+
+    private static void heapSortTest() {
+        printNewTest("HEAP SORT TEST");
+        printList("Any list", Color.BLUE, testLists.any());
+        int[] sortedAnyList = new BinaryHeap(testLists.any().clone()).sort();
+        printList("Sorted Any list", Color.GREEN, sortedAnyList);
+
+        printList("Already sorted list", Color.BLUE, testLists.alreadySorted());
+        int[] sortedAlreadySortedList = new BinaryHeap(testLists.alreadySorted().clone()).sort();
+        printList("Sorted Alreaddy list", Color.GREEN, sortedAlreadySortedList);
+
+        printList("inverse list", Color.BLUE, testLists.inversedSorted());
+        int[] sortedInverseList = new BinaryHeap(testLists.inversedSorted().clone()).sort();
+        printList("Sorted Inversy list", Color.GREEN, sortedInverseList);
+
+        printList("Repeated list", Color.BLUE, testLists.repeadted());
+        int[] sortedRepeatedList = new BinaryHeap(testLists.repeadted().clone()).sort();
         printList("Sorted Inversy list", Color.GREEN, sortedRepeatedList);
     }
 
