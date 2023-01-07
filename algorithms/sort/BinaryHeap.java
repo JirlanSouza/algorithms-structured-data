@@ -1,22 +1,27 @@
 package sort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryHeap {
-    private static List<Integer> data = new ArrayList<Integer>();
+    private List<Integer> data;
 
-    public static Integer[] sort(List<Integer> dataList) {
-        heapify(dataList, dataList.size());
-        for (int i = dataList.size() - 1; i >= 0; i--) {
-            swap(dataList, 0, i);
-            heapify(dataList, i - 1, 0);
-        }
-
-        return (Integer[]) dataList.toArray();
+    public BinaryHeap(int[] data) {
+        this.data = new ArrayList<Integer>(Arrays.stream(data).boxed().toList());
     }
 
-    public static void insert(int value) {
+    public int[] sort() {
+        heapify(data, data.size());
+        for (int i = data.size() - 1; i >= 0; i--) {
+            swap(data, 0, i);
+            heapify(data, i - 1, 0);
+        }
+
+        return data.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public void insert(int value) {
         data.add(value);
         int nodeIndex = data.size() - 1;
         int parent = parent(nodeIndex);
@@ -28,7 +33,7 @@ public class BinaryHeap {
         }
     }
 
-    public static int dequeue() {
+    public int dequeue() {
         if (data.isEmpty())
             return -1;
 
@@ -39,7 +44,7 @@ public class BinaryHeap {
         return result;
     }
 
-    public static void heapify(List<Integer> dataList, int size) {
+    public void heapify(List<Integer> dataList, int size) {
         if (size <= 1)
             return;
         int lastIndex = size - 1;
@@ -49,7 +54,7 @@ public class BinaryHeap {
         }
     }
 
-    public static void heapify(List<Integer> dataList, int size, int nodeIndex) {
+    public void heapify(List<Integer> dataList, int size, int nodeIndex) {
         int biggest = nodeIndex;
         int left = 2 * nodeIndex + 1;
         int right = 2 * nodeIndex + 2;
@@ -68,35 +73,35 @@ public class BinaryHeap {
         }
     }
 
-    public static int left(int nodeIndex) {
+    public int left(int nodeIndex) {
         int result = (2 * nodeIndex) + 1;
         return (result < data.size()) ? result : -1;
     }
 
-    public static int right(int nodeIndex) {
+    public int right(int nodeIndex) {
         int result = (2 * nodeIndex) + 2;
         return (result < data.size()) ? result : -1;
     }
 
-    public static int parent(int nodeIndex) {
+    public int parent(int nodeIndex) {
         return nodeIndex == 0 ? -1 : (nodeIndex - 1) / 2;
     }
 
-    private static boolean isBigger(int nodeIndexOne, int nodeIndexTwo) {
+    private boolean isBigger(int nodeIndexOne, int nodeIndexTwo) {
         return data.get(nodeIndexOne) > data.get(nodeIndexTwo);
     }
 
-    private static boolean isBigger(List<Integer> dataList, int nodeIndexOne, int nodeIndexTwo) {
+    private boolean isBigger(List<Integer> dataList, int nodeIndexOne, int nodeIndexTwo) {
         return dataList.get(nodeIndexOne) > dataList.get(nodeIndexTwo);
     }
 
-    private static void swap(int nodeIndexOne, int nodeIndexTwo) {
+    private void swap(int nodeIndexOne, int nodeIndexTwo) {
         int temp = data.get(nodeIndexOne);
         data.set(nodeIndexOne, data.get(nodeIndexTwo));
         data.set(nodeIndexTwo, temp);
     }
 
-    private static void swap(List<Integer> dataList, int nodeIndexOne, int nodeIndexTwo) {
+    private void swap(List<Integer> dataList, int nodeIndexOne, int nodeIndexTwo) {
         int temp = dataList.get(nodeIndexOne);
         dataList.set(nodeIndexOne, dataList.get(nodeIndexTwo));
         dataList.set(nodeIndexTwo, temp);
