@@ -9,6 +9,7 @@ public class BinaryHeap {
 
     public BinaryHeap(int[] data) {
         this.data = new ArrayList<Integer>(Arrays.stream(data).boxed().toList());
+        heapify(this.data, this.data.size());
     }
 
     public int[] sort() {
