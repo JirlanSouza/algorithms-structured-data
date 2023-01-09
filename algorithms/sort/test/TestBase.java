@@ -1,14 +1,20 @@
 package sort.test;
 
+import java.time.Duration;
+
 public class TestBase {
-    public static void test(String title, int[] expect, int[] received) {
+    public static void test(String title, int[] expect, TestExecutor testFunction) {
+        var startTime = System.nanoTime();
+        var received = testFunction.run();
+        var endTime = System.nanoTime();
         printTestHeader(title);
         var result = compare(expect, received);
         printList("Expect", Color.GREEN, expect);
-        printResult(result);
+        printResult(result, endTime - startTime);
+
     }
 
-    private static void printResult(TestResult result) {
+    private static void printResult(TestResult result, long time) {
         StringBuilder formetedResult = new StringBuilder();
         var color = result.passed() ? Color.GREEN : Color.RED;
         formetedResult.append(String.format("\u001b[%d;1m %-20s\u001b[0m ", color.getValue(), "Received"));
@@ -18,7 +24,9 @@ public class TestBase {
         }
 
         formetedResult.delete(formetedResult.length() - 2, formetedResult.length() - 1);
-        formetedResult.append("\n");
+        formetedResult
+                .append(String.format("\n\u001b[%d;1m %-20s\u001b[0m %s\n", color.getValue(), "Time",
+                        Duration.ofNanos(time)));
         System.out.println(formetedResult);
     }
 
@@ -53,7 +61,6 @@ public class TestBase {
         }
 
         formetedPrefix.delete(formetedPrefix.length() - 2, formetedPrefix.length() - 1);
-        formetedPrefix.append("\n");
         System.out.println(formetedPrefix);
     }
 
@@ -63,6 +70,10 @@ public class TestBase {
         var testHeader = String.format(format, Color.BLUE.getValue(), " ", name, " ");
         System.out.println(testHeader);
     }
+}
+
+interface TestExecutor {
+    int[] run();
 }
 
 final record TestResult(boolean passed, Comparabled[] resultData) {

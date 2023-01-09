@@ -1,7 +1,7 @@
 package sort.test;
 
-import sort.BinaryHeap;
 import sort.BubbleSort;
+import sort.HeapSort;
 import sort.MergeSort;
 import sort.QuickSort;
 
@@ -39,60 +39,48 @@ public class SortAlgorithmsTest {
     }
 
     private static void quickSortTest() {
-        int[] sortedAnyList = QuickSort.sort(testLists.any().clone());
-        TestBase.test("QUICK SORT TEST ANY LIST", expectedLists.any(), sortedAnyList);
-
-        int[] sortedAlreadySortedList = QuickSort.sort(testLists.alreadySorted().clone());
-        TestBase.test("QUICK SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(), sortedAlreadySortedList);
-
-        int[] sortedInverseList = QuickSort.sort(testLists.inversedSorted().clone());
-        TestBase.test("QUICK SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(), sortedInverseList);
-
-        int[] sortedRepeatedList = QuickSort.sort(testLists.repeadted().clone());
-        TestBase.test("QUICK SORT TEST REPEATED LIST", expectedLists.repeadted(), sortedRepeatedList);
+        TestBase.test("QUICK SORT TEST ANY LIST", expectedLists.any(), () -> QuickSort.sort(testLists.any().clone()));
+        TestBase.test("QUICK SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(),
+                () -> QuickSort.sort(testLists.alreadySorted().clone()));
+        TestBase.test("QUICK SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(),
+                () -> QuickSort.sort(testLists.inversedSorted().clone()));
+        TestBase.test("QUICK SORT TEST REPEATED LIST", expectedLists.repeadted(),
+                () -> QuickSort.sort(testLists.repeadted().clone()));
 
     }
 
     private static void bublleSortTest() {
-        int[] sortedAnyList = BubbleSort.sort(testLists.any().clone(), false);
-        TestBase.test("BUBBLE SORT TEST ANY LIST", expectedLists.any(), sortedAnyList);
-
-        int[] sortedAlreadySortedList = BubbleSort.sort(testLists.alreadySorted().clone(), false);
-        TestBase.test("BUBBLE SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(), sortedAlreadySortedList);
-
-        int[] sortedInverseList = BubbleSort.sort(testLists.inversedSorted().clone(), false);
-        TestBase.test("BUBBLE SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(), sortedInverseList);
-
-        int[] sortedRepeatedList = BubbleSort.sort(testLists.repeadted().clone(), false);
-        TestBase.test("BUBBLE SORT TEST REPEATED LIST", expectedLists.repeadted(), sortedRepeatedList);
+        TestBase.test("BUBBLE SORT TEST ANY LIST", expectedLists.any(),
+                () -> BubbleSort.sort(testLists.any().clone(), false));
+        TestBase.test("BUBBLE SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(),
+                () -> BubbleSort.sort(testLists.alreadySorted().clone(), false));
+        TestBase.test("BUBBLE SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(),
+                () -> BubbleSort.sort(testLists.inversedSorted().clone(), false));
+        TestBase.test("BUBBLE SORT TEST REPEATED LIST", expectedLists.repeadted(),
+                () -> BubbleSort.sort(testLists.repeadted().clone(), false));
     }
 
     private static void mergeSortTest() {
-        int[] sortedAnyList = MergeSort.sort(testLists.any().clone());
-        TestBase.test("MERGE SORT TEST ANY LIST", expectedLists.any(), sortedAnyList);
+        TestBase.test("MERGE SORT TEST ANY LIST", expectedLists.any(), () -> MergeSort.sort(testLists.any().clone()));
 
-        int[] sortedAlreadySortedList = MergeSort.sort(testLists.alreadySorted().clone());
-        TestBase.test("MERGE SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(), sortedAlreadySortedList);
+        TestBase.test("MERGE SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(),
+                () -> MergeSort.sort(testLists.alreadySorted().clone()));
 
-        int[] sortedInverseList = MergeSort.sort(testLists.inversedSorted().clone());
-        TestBase.test("MERGE SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(), sortedInverseList);
+        TestBase.test("MERGE SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(),
+                () -> MergeSort.sort(testLists.inversedSorted().clone()));
 
-        int[] sortedRepeatedList = MergeSort.sort(testLists.repeadted().clone());
-        TestBase.test("MERGE SORT TEST REPEATED LIST", expectedLists.repeadted(), sortedRepeatedList);
+        TestBase.test("MERGE SORT TEST REPEATED LIST", expectedLists.repeadted(),
+                () -> MergeSort.sort(testLists.repeadted().clone()));
     }
 
     private static void heapSortTest() {
-        int[] sortedAnyList = new BinaryHeap(testLists.any().clone()).sort();
-        TestBase.test("HEAP SORT TEST ANY LIST", expectedLists.any(), sortedAnyList);
-
-        int[] sortedAlreadySortedList = new BinaryHeap(testLists.alreadySorted().clone()).sort();
-        TestBase.test("HEAP SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(), sortedAlreadySortedList);
-
-        int[] sortedInverseList = new BinaryHeap(testLists.inversedSorted().clone()).sort();
-        TestBase.test("HEAP SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(), sortedInverseList);
-
-        int[] sortedRepeatedList = new BinaryHeap(testLists.repeadted().clone()).sort();
-        TestBase.test("HEAP SORT TEST REPEATED LIST", expectedLists.repeadted(), sortedRepeatedList);
+        TestBase.test("HEAP SORT TEST ANY LIST", expectedLists.any(), () -> HeapSort.sort(testLists.any().clone()));
+        TestBase.test("HEAP SORT TEST ALREADY SORTED LIST", expectedLists.alreadySorted(),
+                () -> HeapSort.sort(testLists.alreadySorted().clone()));
+        TestBase.test("HEAP SORT TEST INVERSE SORTED LIST", expectedLists.inversedSorted(),
+                () -> HeapSort.sort(testLists.inversedSorted().clone()));
+        TestBase.test("HEAP SORT TEST REPEATED LIST", expectedLists.repeadted(),
+                () -> HeapSort.sort(testLists.repeadted().clone()));
     }
 
 }
