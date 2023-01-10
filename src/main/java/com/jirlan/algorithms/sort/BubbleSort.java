@@ -1,4 +1,4 @@
-package sort;
+package com.jirlan.algorithms.sort;
 
 public class BubbleSort {
     /*

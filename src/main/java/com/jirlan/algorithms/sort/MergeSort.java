@@ -1,4 +1,4 @@
-package sort;
+package com.jirlan.algorithms.sort;
 
 public class MergeSort {
     public static int[] sort(int[] data) {
