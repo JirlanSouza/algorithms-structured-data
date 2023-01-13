@@ -48,34 +48,37 @@ public class LinkedList<T> {
         var index = rawIndex < 0 ? 0 : rawIndex;
         this.listSize++;
 
-        if (rawIndex == 0) {
+        if (index == 0) {
             this.prepend(value);
+            return this;
+        }
+
+        var count = 1;
+        var currentNode = this.head;
+        var newNode = new LinkedListNode<T>(value, null);
+
+        while (currentNode != null) {
+            if (count == index) {
+                break;
+            }
+
+            currentNode = currentNode.next;
+            count++;
+        }
+
+        if (currentNode != null) {
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
+
+            return this;
+        }
+
+        if (this.tail != null) {
+            this.tail.next = newNode;
+            this.tail = newNode;
         } else {
-            var count = 1;
-            var currentNode = this.head;
-            var newNode = new LinkedListNode<>(value, null);
-
-            while (currentNode != null) {
-                if (count == index) {
-                    break;
-                }
-
-                currentNode = currentNode.next;
-                count++;
-            }
-
-            if (currentNode != null) {
-                newNode.next = newNode;
-                this.tail = newNode;
-            } else {
-                if (this.tail != null) {
-                    this.tail.next = newNode;
-                    this.tail = newNode;
-                } else {
-                    this.head = newNode;
-                    this.tail = newNode;
-                }
-            }
+            this.head = newNode;
+            this.tail = newNode;
         }
 
         return this;
@@ -188,6 +191,18 @@ public class LinkedList<T> {
         }
 
         return array;
+    }
+
+    public String toString() {
+        var builder = new StringBuilder();
+        var currentNode = this.head;
+
+        while (currentNode != null) {
+            builder.append(" " + currentNode + ",");
+            currentNode = currentNode.next;
+        }
+
+        return builder.toString();
     }
 
     public LinkedList<T> reverse() {

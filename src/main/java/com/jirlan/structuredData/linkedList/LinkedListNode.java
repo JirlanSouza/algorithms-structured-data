@@ -8,4 +8,8 @@ public class LinkedListNode<T> {
         this.value = value;
         this.next = next;
     }
+
+    public String toString() {
+        return this.value.toString();
+    }
 }
