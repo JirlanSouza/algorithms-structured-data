@@ -51,4 +51,29 @@ public class LinkedListTest {
 
         assertEquals(list.toString(), " 1, 4, 2, 3, 10,");
     }
+
+    @Test
+    public void deleteNodeByValueFromLinkedList() {
+        var list = new LinkedList<Integer>();
+
+        list.append(1);
+        list.append(1);
+        list.append(2);
+        list.append(10);
+        list.append(12);
+
+        assertEquals(list.toString(), " 1, 1, 2, 10, 12,");
+
+        list.delete(1);
+        assertEquals(list.toString(), " 2, 10, 12,");
+
+        list.delete(10);
+        assertEquals(list.toString(), " 2, 12,");
+
+        list.delete(12);
+        assertEquals(list.toString(), " 2,");
+
+        list.delete(2);
+        assertEquals(list.toString(), "");
+    }
 }
