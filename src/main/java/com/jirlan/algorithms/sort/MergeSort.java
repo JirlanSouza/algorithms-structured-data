@@ -20,6 +20,7 @@ public class MergeSort {
         MergeSort.intercalateOtimized(data, left, right);
     }
 
+    /*
     private static void intercalate(int[] data, int[] left, int[] right) {
         int leftIndex = 0;
         int rightIndex = 0;
@@ -42,6 +43,7 @@ public class MergeSort {
         }
 
     }
+     */
 
     private static void intercalateOtimized(int[] data, int[] left, int[] right) {
         int leftIndex = 0;
