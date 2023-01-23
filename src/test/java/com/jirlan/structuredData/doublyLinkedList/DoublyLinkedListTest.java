@@ -28,7 +28,6 @@ public class DoublyLinkedListTest {
         assertEquals(list.head.next.previous, list.head);
         assertEquals(list.tail.previous.next, list.tail);
         assertEquals(list.tail.previous.value, 3);
-        System.out.println(list);
         assertTrue(list.toString().equals("3, 2"));
     }
 }

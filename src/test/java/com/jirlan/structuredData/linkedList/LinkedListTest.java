@@ -47,8 +47,6 @@ public class LinkedListTest {
         list.insert(1, -7);
         list.insert(10, 9);
 
-        System.out.println(list);
-
         assertEquals(list.toString(), " 1, 4, 2, 3, 10,");
     }
 
