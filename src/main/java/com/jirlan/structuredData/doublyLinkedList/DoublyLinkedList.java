@@ -40,4 +40,21 @@ public class DoublyLinkedList<T> {
 
         return builder.toString();
     }
+
+    public DoublyLinkedList<T> append(T value) {
+        var newNode = new DoublyLinkedListNode<T>(value, this.head, null);
+
+        if (this.head == null) {
+            this.head = newNode;
+            this.tail = newNode;
+
+            return this;
+        }
+
+        this.tail.next = newNode;
+        newNode.previous = this.tail;
+        this.tail = newNode;
+
+        return this;
+    }
 }
