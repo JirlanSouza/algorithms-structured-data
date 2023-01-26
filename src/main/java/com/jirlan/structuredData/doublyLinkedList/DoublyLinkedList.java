@@ -42,7 +42,7 @@ public class DoublyLinkedList<T> {
     }
 
     public DoublyLinkedList<T> append(T value) {
-        var newNode = new DoublyLinkedListNode<T>(value, this.head, null);
+        var newNode = new DoublyLinkedListNode<T>(value, null, null);
 
         if (this.head == null) {
             this.head = newNode;
@@ -56,5 +56,44 @@ public class DoublyLinkedList<T> {
         this.tail = newNode;
 
         return this;
+    }
+
+    public DoublyLinkedListNode<T> delete(T value) {
+        if (this.head == null) {
+            return null;
+        }
+
+        DoublyLinkedListNode<T> deletedNode = null;
+        var currentNode = this.head;
+
+        while (currentNode != null) {
+            if (currentNode.value.equals(value)) {
+                deletedNode = currentNode;
+
+                if (deletedNode.equals(this.head)) {
+                    this.head = this.head.next;
+
+                    if (this.head != null) {
+                        this.head.previous = null;
+                    }
+
+                    if (deletedNode.equals(this.tail)) {
+                        this.tail = null;
+                    }
+                } else if (deletedNode.equals(this.tail)) {
+                    this.tail = deletedNode.previous;
+                    this.tail.next = null;
+                } else {
+                    var previousNode = deletedNode.previous;
+                    var nextNode = deletedNode.next;
+                    previousNode.next = nextNode;
+                    nextNode.previous = previousNode;
+                }
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return deletedNode;
     }
 }

@@ -46,4 +46,56 @@ public class DoublyLinkedListTest {
         assertEquals(list.tail.previous.value, 1);
         assertTrue(list.toString().equals("2, 1"));
     }
+
+    @Test
+    public void shouldDeleteNodeFromLinkedList() {
+        var linkedList = new DoublyLinkedList<Integer>();
+
+        assertNull(linkedList.delete(5));
+
+        linkedList.append(1);
+        linkedList.append(1);
+        linkedList.append(2);
+        linkedList.append(3);
+        linkedList.append(3);
+        linkedList.append(3);
+        linkedList.append(4);
+        linkedList.append(5);
+
+        assertEquals(linkedList.head.toString(), "1");
+        assertEquals(linkedList.tail.toString(), "5");
+
+        var deletedNode = linkedList.delete(3);
+        assertEquals(deletedNode.value, 3);
+        assertEquals(linkedList.tail.previous.previous.value, 2);
+        assertEquals(linkedList.toString(), "1, 1, 2, 4, 5");
+
+        linkedList.delete(3);
+        assertEquals(linkedList.toString(), "1, 1, 2, 4, 5");
+
+        linkedList.delete(1);
+        assertEquals(linkedList.toString(), "2, 4, 5");
+
+        assertEquals(linkedList.head.toString(), "2");
+        assertEquals(linkedList.head.next.next, linkedList.tail);
+        assertEquals(linkedList.tail.previous.previous, linkedList.head);
+        assertEquals(linkedList.tail.toString(), "5");
+
+        linkedList.delete(5);
+
+        assertEquals(linkedList.toString(), "2, 4");
+
+        assertEquals(linkedList.head.toString(), "2");
+        assertEquals(linkedList.tail.toString(), "4");
+
+        linkedList.delete(4);
+        assertEquals(linkedList.toString(), "2");
+
+        assertEquals(linkedList.head.toString(), "2");
+        assertEquals(linkedList.tail.toString(), "2");
+        assertEquals(linkedList.head, linkedList.tail);
+
+        linkedList.delete(2);
+        assertEquals(linkedList.toString(), "");
+    };
 }
