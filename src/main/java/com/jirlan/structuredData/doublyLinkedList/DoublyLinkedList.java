@@ -96,4 +96,42 @@ public class DoublyLinkedList<T> {
 
         return deletedNode;
     }
+
+    public DoublyLinkedListNode<T> deleteHead() {
+        if (this.head == null) {
+            return null;
+        }
+
+        var deletedHead = this.head;
+
+        if (this.head.next != null) {
+            this.head = this.head.next;
+            this.head.previous = null;
+        } else {
+            this.head = null;
+            this.tail = null;
+        }
+
+        return deletedHead;
+    }
+
+    public DoublyLinkedListNode<T> deleteTail() {
+        if (this.tail == null) {
+            return null;
+        }
+
+        var deletedTail = this.tail;
+
+        if (this.tail.equals(this.head)) {
+            this.head = null;
+            this.tail = null;
+
+            return deletedTail;
+        }
+
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+
+        return deletedTail;
+    }
 }
