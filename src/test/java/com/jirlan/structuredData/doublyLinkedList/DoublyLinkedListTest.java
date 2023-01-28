@@ -44,7 +44,7 @@ public class DoublyLinkedListTest {
 
         assertEquals(list.head.next.value, 2);
         assertEquals(list.tail.previous.value, 1);
-        assertTrue(list.toString().equals("2, 1"));
+        assertEquals(list.toString(), "1, 2");
     }
 
     @Test
