@@ -134,4 +134,24 @@ public class DoublyLinkedList<T> {
 
         return deletedTail;
     }
+
+    public DoublyLinkedListNode<T> find(T value) {
+        if (this.head == null) {
+            return null;
+        }
+
+        var currentNode = this.head;
+        DoublyLinkedListNode<T> foundNode = null;
+
+        while (currentNode != null) {
+            if (currentNode.value.equals(value)) {
+                foundNode = currentNode;
+                break;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return foundNode;
+    }
 }

@@ -1,6 +1,7 @@
 package com.jirlan.structuredData.doublyLinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
@@ -161,4 +162,21 @@ public class DoublyLinkedListTest {
         assertNull(list.tail);
     };
 
+    @Test
+    public void shouldFindNodeByValue() {
+        var list = new DoublyLinkedList<Integer>();
+
+        assertNull(list.find(5));
+
+        list.append(1);
+        assertNotNull(list.find(1));
+
+        list.append(2);
+        list.append(3);
+
+        var node = list.find(2);
+
+        assertEquals(node.value, 2);
+        assertNull(list.find(5));
+    };
 }
