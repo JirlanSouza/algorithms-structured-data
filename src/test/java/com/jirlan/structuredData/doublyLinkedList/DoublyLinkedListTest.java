@@ -179,4 +179,46 @@ public class DoublyLinkedListTest {
         assertEquals(node.value, 2);
         assertNull(list.find(5));
     };
+
+    @Test
+    public void shouldReverseLinkedList() {
+        var list = new DoublyLinkedList<Integer>();
+
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+
+        assertEquals(list.toString(), "1, 2, 3, 4");
+        assertEquals(list.head.value, 1);
+        assertEquals(list.tail.value, 4);
+
+        list.reverse();
+
+        assertEquals(list.toString(), "4, 3, 2, 1");
+        assertNull(list.head.previous);
+        assertEquals(list.head.value, 4);
+        assertEquals(list.head.next.value, 3);
+        assertEquals(list.head.next.next.value, 2);
+        assertEquals(list.head.next.next.next.value, 1);
+        assertNull(list.tail.next);
+        assertEquals(list.tail.value, 1);
+        assertEquals(list.tail.previous.value, 2);
+        assertEquals(list.tail.previous.previous.value, 3);
+        assertEquals(list.tail.previous.previous.previous.value, 4);
+
+        list.reverse();
+
+        assertEquals(list.toString(), "1, 2, 3, 4");
+        assertNull(list.head.previous);
+        assertEquals(list.head.value, 1);
+        assertEquals(list.head.next.value, 2);
+        assertEquals(list.head.next.next.value, 3);
+        assertEquals(list.head.next.next.next.value, 4);
+        assertNull(list.tail.next);
+        assertEquals(list.tail.value, 4);
+        assertEquals(list.tail.previous.value, 3);
+        assertEquals(list.tail.previous.previous.value, 2);
+        assertEquals(list.tail.previous.previous.previous.value, 1);
+    };
 }

@@ -154,4 +154,25 @@ public class DoublyLinkedList<T> {
 
         return foundNode;
     }
+
+    public DoublyLinkedList<T> reverse() {
+        var currentNode = this.head;
+        DoublyLinkedListNode<T> nextNode = null;
+        DoublyLinkedListNode<T> previousNode = null;
+
+        while (currentNode != null) {
+            nextNode = currentNode.next;
+            previousNode = currentNode.previous;
+            currentNode.next = previousNode;
+            currentNode.previous = nextNode;
+
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        this.tail = this.head;
+        this.head = previousNode;
+
+        return this;
+    }
 }
