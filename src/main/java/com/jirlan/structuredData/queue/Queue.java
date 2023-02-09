@@ -6,6 +6,15 @@ public class Queue<T> {
     LinkedList<T> linkedList;
 
     public Queue() {
-        this.linkedList = new LinkedList<T>();
+        this.linkedList = new LinkedList<>();
+    }
+
+    public void enqueue(T value) {
+        linkedList.append(value);
+    }
+
+    @Override
+    public String toString() {
+        return linkedList.toString();
     }
 }
