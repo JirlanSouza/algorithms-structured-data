@@ -17,4 +17,9 @@ public class Queue<T> {
     public String toString() {
         return linkedList.toString();
     }
+
+    public T dequeue() {
+        var dequeued = linkedList.deleteHead();
+        return  dequeued.value;
+    }
 }

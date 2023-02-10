@@ -22,4 +22,16 @@ public class QueueTest {
 
         assertEquals(queue.toString()," 1, 2,");
     }
+
+    @Test
+    public void shouldBePossibleToEnqueueAndDequeueData() {
+        var queue = new Queue<Integer>();
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+
+        assertEquals(queue.toString(), " 1, 2,");
+        assertEquals(queue.dequeue(), 1);
+        assertEquals(queue.dequeue(), 2);
+    }
 }
