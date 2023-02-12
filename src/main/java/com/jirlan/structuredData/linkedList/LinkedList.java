@@ -179,6 +179,8 @@ public class LinkedList<T> {
             this.tail = null;
         }
 
+        this.listSize--;
+
         return deletedHead;
     }
 
