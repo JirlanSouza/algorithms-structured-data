@@ -2,8 +2,7 @@ package com.jirlan.structuredData.queue;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
     @Test
@@ -33,5 +32,18 @@ public class QueueTest {
         assertEquals(queue.toString(), " 1, 2,");
         assertEquals(queue.dequeue(), 1);
         assertEquals(queue.dequeue(), 2);
+    }
+
+    @Test
+    public void shouldPeekDataFromQueue() {
+        var queue = new Queue<Integer>();
+
+        assertNull(queue.peek());
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+
+        assertEquals(queue.peek(), 1);
+        assertEquals(queue.peek(), 1);
     }
 }

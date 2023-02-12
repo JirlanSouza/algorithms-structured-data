@@ -22,4 +22,12 @@ public class Queue<T> {
         var dequeued = linkedList.deleteHead();
         return  dequeued.value;
     }
+
+    public T peek() {
+        if (linkedList.head == null) {
+            return null;
+        }
+
+        return linkedList.head.value;
+    }
 }
