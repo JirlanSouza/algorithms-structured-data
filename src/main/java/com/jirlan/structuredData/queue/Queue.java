@@ -30,4 +30,8 @@ public class Queue<T> {
 
         return linkedList.head.value;
     }
+
+    public boolean isEmpty() {
+        return linkedList.size() == 0;
+    }
 }

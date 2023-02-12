@@ -46,4 +46,15 @@ public class QueueTest {
         assertEquals(queue.peek(), 1);
         assertEquals(queue.peek(), 1);
     }
+
+    @Test
+    public void shouldCheckIfQueueIsEmpty() {
+        var queue = new Queue<Integer>();
+
+        assertTrue(queue.isEmpty());
+
+        queue.enqueue(1);
+
+        assertFalse(queue.isEmpty());
+    }
 }
