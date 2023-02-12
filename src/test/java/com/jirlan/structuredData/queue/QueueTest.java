@@ -57,4 +57,18 @@ public class QueueTest {
 
         assertFalse(queue.isEmpty());
     }
+    
+    @Test
+    public void shouldDequeueFromQueueInFIFOOrder() {
+        var queue = new Queue<Integer>();
+
+        queue.enqueue(1);
+        queue.enqueue(2);
+
+        assertEquals(queue.dequeue(), 1);
+        assertEquals(queue.dequeue(), 2);
+        assertNull(queue.dequeue());
+        System.out.println(queue);
+        assertTrue(queue.isEmpty());
+    }
 }

@@ -20,6 +20,11 @@ public class Queue<T> {
 
     public T dequeue() {
         var dequeued = linkedList.deleteHead();
+
+        if (dequeued == null) {
+            return null;
+        }
+
         return  dequeued.value;
     }
 
