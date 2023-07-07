@@ -45,7 +45,7 @@ public class LinkedList<T> {
     }
 
     public LinkedList<T> insert(T value, int rawIndex) {
-        var index = rawIndex < 0 ? 0 : rawIndex;
+        var index = Math.max(rawIndex, 0);
         this.listSize++;
 
         if (index == 0) {
@@ -75,11 +75,11 @@ public class LinkedList<T> {
 
         if (this.tail != null) {
             this.tail.next = newNode;
-            this.tail = newNode;
         } else {
             this.head = newNode;
-            this.tail = newNode;
         }
+
+        this.tail = newNode;
 
         return this;
     }
@@ -200,7 +200,7 @@ public class LinkedList<T> {
         var currentNode = this.head;
 
         while (currentNode != null) {
-            builder.append(" " + currentNode + ",");
+            builder.append(" ").append(currentNode).append(",");
             currentNode = currentNode.next;
         }
 

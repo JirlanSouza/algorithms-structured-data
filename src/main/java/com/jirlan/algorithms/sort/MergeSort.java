@@ -68,10 +68,11 @@ public class MergeSort {
     }
 
     private static int[] copyDataSlice(int[] data, int start, int end) {
-        int[] dataSlice = new int[end - start];
-        for (int i = start; i < end; i++) {
-            dataSlice[i - start] = data[i];
-        }
+        var length = end - start;
+        var dataSlice = new int[length];
+
+        if (end - start <= 0) return dataSlice;
+        System.arraycopy(data, start, dataSlice, 0, end - start);
 
         return dataSlice;
     }

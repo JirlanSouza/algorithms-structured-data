@@ -29,7 +29,7 @@ public class DoublyLinkedList<T> {
         var builder = new StringBuilder();
 
         while (currentNode != null) {
-            builder.append(currentNode.toString());
+            builder.append(currentNode);
 
             if (currentNode.next != null) {
                 builder.append(", ");
