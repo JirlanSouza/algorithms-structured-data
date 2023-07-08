@@ -1,38 +1,30 @@
 package com.jirlan.algorithms.sort;
 
 public class QuickSort {
-    /*
-     * Complexidade assintótica
-     * Pior caso: O(n²)
-     * Melhor caso: Ω(n log n)
-     */
-
     public static int[] sort(int[] list) {
-        QuickSort.quickSort(list, 0, list.length - 1);
-        return list;
+        return sort(list, 0, list.length - 1);
     }
 
-    private static void quickSort(int[] list, int start, int end) {
-        if (start < end) {
-            int partitionIndex = QuickSort.partition(list, start, end);
-            QuickSort.quickSort(list, start, partitionIndex - 1);
-            QuickSort.quickSort(list, partitionIndex + 1, end);
-        }
-    }
+    private static int[] sort(int[] list, int start, int end) {
+        var pivot = list[start];
+        var left = start;
+        var right = end;
 
-    private static int partition(int[] list, int start, int end) {
-        int pivot = list[end];
-        int i = start;
+        while (left <= right) {
+            while (list[left] < pivot) left++;
+            while (list[right] > pivot) right--;
 
-        for (int j = start; j <= end; j++) {
-            if (list[j] < pivot) {
-                QuickSort.swap(list, i, j);
-                i++;
+            if (left <= right) {
+                swap(list, left, right);
+                left++;
+                right--;
             }
         }
 
-        QuickSort.swap(list, i, end);
-        return i;
+        if (start < right) sort(list, start, right);
+        if (left < end) sort(list, left, end);
+
+        return list;
     }
 
     private static void swap(int[] list, int i, int j) {
