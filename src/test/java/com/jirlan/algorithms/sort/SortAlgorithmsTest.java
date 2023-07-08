@@ -2,6 +2,7 @@ package com.jirlan.algorithms.sort;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import com.jirlan.common.ExecutionTime;
 import org.junit.jupiter.api.Test;
 
 public class SortAlgorithmsTest {
@@ -42,55 +43,63 @@ public class SortAlgorithmsTest {
 
         @Test
         public void bubbleSortTest() {
-                var anyResult = BubbleSort.sort(any.clone(), false);
-                var alreadySortedResult = BubbleSort.sort(alreadySorted.clone(), false);
-                var inverseSortedResult = BubbleSort.sort(inverseSorted.clone(), false);
-                var repeatedResult = BubbleSort.sort(repeated.clone(), false);
+                System.out.println("Bubble sort");
+                var anyResult = ExecutionTime.mettle(any.clone(), BubbleSort::sort);
+                var alreadySortedResult = ExecutionTime.mettle(alreadySorted.clone(), BubbleSort::sort);
+                var inverseSortedResult = ExecutionTime.mettle(inverseSorted.clone(), BubbleSort::sort);
+                var repeatedResult = ExecutionTime.mettle(repeated.clone(), BubbleSort::sort);
 
                 assertArrayEquals(expectedAny, anyResult);
                 assertArrayEquals(expectedAlreadySorted, alreadySortedResult);
                 assertArrayEquals(expectedInverseSorted, inverseSortedResult);
                 assertArrayEquals(expectedRepeated, repeatedResult);
+                System.out.println();
         }
 
         @Test
         public void mergeSortTest() {
-                var anyResult = MergeSort.sort(any.clone());
-                var alreadySortedResult = MergeSort.sort(alreadySorted.clone());
-                var inverseSortedResult = MergeSort.sort(inverseSorted.clone());
-                var repeatedResult = MergeSort.sort(repeated.clone());
+                System.out.println("Merge sort");
+                var anyResult = ExecutionTime.mettle(any.clone(), MergeSort::sort);
+                var alreadySortedResult = ExecutionTime.mettle(alreadySorted.clone(), MergeSort::sort);
+                var inverseSortedResult = ExecutionTime.mettle(inverseSorted.clone(), MergeSort::sort);
+                var repeatedResult = ExecutionTime.mettle(repeated.clone(), MergeSort::sort);
 
                 assertArrayEquals(expectedAny, anyResult);
                 assertArrayEquals(expectedAlreadySorted, alreadySortedResult);
                 assertArrayEquals(expectedInverseSorted, inverseSortedResult);
                 assertArrayEquals(expectedRepeated, repeatedResult);
+                System.out.println();
         }
 
         @Test
         public void quickSortTest() {
-                var anyResult = QuickSort.sort(any.clone());
-                var alreadySortedResult = QuickSort.sort(alreadySorted.clone());
-                var inverseSortedResult = QuickSort.sort(inverseSorted.clone());
-                var repeatedResult = QuickSort.sort(repeated.clone());
+                System.out.println("Quick sort");
+                var anyResult = ExecutionTime.mettle(any.clone(), QuickSort::sort);
+                var alreadySortedResult = ExecutionTime.mettle(alreadySorted.clone(), QuickSort::sort);
+                var inverseSortedResult = ExecutionTime.mettle(inverseSorted.clone(), QuickSort::sort);
+                var repeatedResult = ExecutionTime.mettle(repeated.clone(), QuickSort::sort);
 
                 assertArrayEquals(expectedAny, anyResult);
                 assertArrayEquals(expectedAlreadySorted, alreadySortedResult);
                 assertArrayEquals(expectedInverseSorted, inverseSortedResult);
                 assertArrayEquals(expectedRepeated, repeatedResult);
+                System.out.println();
 
         }
 
         @Test
         public void heapSortTest() {
-                var anyResult = HeapSort.sort(any.clone());
-                var alreadySortedResult = HeapSort.sort(alreadySorted.clone());
-                var inverseSortedResult = HeapSort.sort(inverseSorted.clone());
-                var repeatedResult = HeapSort.sort(repeated.clone());
+                System.out.println("Heap sort");
+                var anyResult = ExecutionTime.mettle(any.clone(), HeapSort::sort);
+                var alreadySortedResult = ExecutionTime.mettle(alreadySorted.clone(), HeapSort::sort);
+                var inverseSortedResult = ExecutionTime.mettle(inverseSorted.clone(), HeapSort::sort);
+                var repeatedResult = ExecutionTime.mettle(repeated.clone(), HeapSort::sort);
 
                 assertArrayEquals(expectedAny, anyResult);
                 assertArrayEquals(expectedAlreadySorted, alreadySortedResult);
                 assertArrayEquals(expectedInverseSorted, inverseSortedResult);
                 assertArrayEquals(expectedRepeated, repeatedResult);
+                System.out.println();
         }
 
 }
