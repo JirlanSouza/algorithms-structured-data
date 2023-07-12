@@ -1,42 +1,61 @@
 package com.jirlan.structuredData.queue;
 
-import com.jirlan.structuredData.linkedList.LinkedList;
+import java.lang.reflect.Array;
 
 public class Queue<T> {
-    LinkedList<T> linkedList;
+    private int head;
+    private int tail;
+    private final T[] data;
 
-    public Queue() {
-        this.linkedList = new LinkedList<>();
+    public Queue(Class<T> type, int capacity) {
+        data = (T[]) Array.newInstance(type, capacity);
     }
 
     public void enqueue(T value) {
-        linkedList.append(value);
+        if (getLength() >= data.length) {
+            throw new RuntimeException("The queue has full");
+        }
+
+        data[head++] = value;
+        if (head == data.length) head = 0;
+    }
+
+    public T dequeue() {
+        if (head == tail) return null;
+
+        var dequeued = data[tail];
+        data[tail++] = null;
+
+        if (tail == data.length) tail = 0;
+
+        return dequeued;
+    }
+
+    public T peek() {
+        return data[tail];
+    }
+
+    public boolean isEmpty() {
+        return head == tail;
     }
 
     @Override
     public String toString() {
-        return linkedList.toString();
-    }
+        var builder = new StringBuilder();
 
-    public T dequeue() {
-        var dequeued = linkedList.deleteHead();
+        for (int i = tail; i < head; i++) {
 
-        if (dequeued == null) {
-            return null;
+            builder.append(" ").append(data[i]).append(",");
         }
 
-        return  dequeued.value;
+        return builder.toString();
     }
 
-    public T peek() {
-        if (linkedList.head == null) {
-            return null;
+    private int getLength() {
+        if (head < tail) {
+            return (head + 1) + (data.length - tail);
         }
 
-        return linkedList.head.value;
-    }
-
-    public boolean isEmpty() {
-        return linkedList.size() == 0;
+        return (head - tail) + 1;
     }
 }

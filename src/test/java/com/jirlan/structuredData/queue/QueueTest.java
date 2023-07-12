@@ -7,24 +7,24 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QueueTest {
     @Test
     public void shouldCreateEmptyQueue() {
-        var queue = new Queue<Integer>();
-        assertNotNull(queue);
-        assertNotNull(queue.linkedList);
+        var queue = new Queue<Integer>(Integer.class, 20);
+        assertNull(queue.peek());
+        assertTrue(queue.isEmpty());
     }
 
     @Test
     public void shouldEnqueueDataToQueue() {
-        var queue = new Queue<Integer>();
+        var queue = new Queue<Integer>(Integer.class, 20);
 
         queue.enqueue(1);
         queue.enqueue(2);
 
-        assertEquals(queue.toString()," 1, 2,");
+        assertEquals(queue.toString(), " 1, 2,");
     }
 
     @Test
     public void shouldBePossibleToEnqueueAndDequeueData() {
-        var queue = new Queue<Integer>();
+        var queue = new Queue<Integer>(Integer.class, 20);
 
         queue.enqueue(1);
         queue.enqueue(2);
@@ -36,7 +36,7 @@ public class QueueTest {
 
     @Test
     public void shouldPeekDataFromQueue() {
-        var queue = new Queue<Integer>();
+        var queue = new Queue<Integer>(Integer.class, 20);
 
         assertNull(queue.peek());
 
@@ -49,7 +49,7 @@ public class QueueTest {
 
     @Test
     public void shouldCheckIfQueueIsEmpty() {
-        var queue = new Queue<Integer>();
+        var queue = new Queue<Integer>(Integer.class, 20);
 
         assertTrue(queue.isEmpty());
 
@@ -57,10 +57,10 @@ public class QueueTest {
 
         assertFalse(queue.isEmpty());
     }
-    
+
     @Test
     public void shouldDequeueFromQueueInFIFOOrder() {
-        var queue = new Queue<Integer>();
+        var queue = new Queue<Integer>(Integer.class, 20);
 
         queue.enqueue(1);
         queue.enqueue(2);
@@ -68,7 +68,31 @@ public class QueueTest {
         assertEquals(queue.dequeue(), 1);
         assertEquals(queue.dequeue(), 2);
         assertNull(queue.dequeue());
-        System.out.println(queue);
         assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void shouldQueueAndDequeueManyData() {
+        var queue = new Queue<Integer>(Integer.class, 20);
+
+        for (int i = 0; i < 30; i++) {
+            queue.enqueue(1 + i);
+            queue.enqueue(2 + i);
+            assertEquals(queue.dequeue(), 1 + i);
+            assertEquals(queue.dequeue(), 2 + i);
+        }
+
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void shouldNotQueueDataOverQueueCapacity() {
+        var queue = new Queue<Integer>(Integer.class, 20);
+
+        assertThrows(RuntimeException.class, () -> {
+            for (int i = 0; i < 30; i++) {
+                queue.enqueue(1 + i);
+            }
+        });
     }
 }
