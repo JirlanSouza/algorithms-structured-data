@@ -1,7 +1,10 @@
 package com.jirlan.structuredData.tree;
 
+import com.jirlan.structuredData.queue.Queue;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BinaryTree<T extends Comparable<T>> {
     private Node<T> root;
@@ -9,7 +12,7 @@ public class BinaryTree<T extends Comparable<T>> {
     public void insert(T data) {
         Node<T> newNode = new Node<>(data);
 
-        if (this.root == null) {
+        if (Objects.isNull(this.root)) {
             this.root = newNode;
             return;
         }
@@ -23,14 +26,14 @@ public class BinaryTree<T extends Comparable<T>> {
             if (data.compareTo(current.data) < 0) {
                 current = current.left;
 
-                if (current == null) {
+                if (Objects.isNull(current)) {
                     parent.left = newNode;
                     return;
                 }
             } else {
                 current = current.right;
 
-                if (current == null) {
+                if (Objects.isNull(current)) {
                     parent.right = newNode;
                     return;
                 }
@@ -59,12 +62,37 @@ public class BinaryTree<T extends Comparable<T>> {
         return list;
     }
 
+    public List<T> levelOrderTraversal() {
+        ArrayList<T> list = new ArrayList<>();
+        Queue<Node<T>> queue = new Queue<>();
+
+        queue.enqueue(this.root);
+
+        while (!queue.isEmpty()) {
+            Node<T> current = queue.dequeue();
+
+            if (Objects.nonNull(current.left)) {
+                queue.enqueue(current.left);
+            }
+
+            if (Objects.nonNull(current.right)) {
+                queue.enqueue(current.right);
+            }
+
+            list.add(current.data);
+        }
+
+        return list;
+    }
+
     public int height() {
         return height(this.root);
     }
 
     private void preOrderTraversal(Node<T> root, List<T> list) {
-        if (root == null) return;
+        if (Objects.isNull(root)) {
+            return;
+        }
 
         list.add(root.data);
         inOrderTraversal(root.left, list);
@@ -73,7 +101,9 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     private void inOrderTraversal(Node<T> root, List<T> list) {
-        if (root == null) return;
+        if (Objects.isNull(root)) {
+            return;
+        }
 
         inOrderTraversal(root.left, list);
         list.add(root.data);
@@ -82,7 +112,7 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     private void postOrderTraversal(Node<T> root, List<T> list) {
-        if (root == null) {
+        if (Objects.isNull(root)) {
             return;
         }
 
@@ -92,7 +122,7 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     private int height(Node<T> root) {
-        if (root == null) {
+        if (Objects.isNull(root)) {
             return 0;
         }
 

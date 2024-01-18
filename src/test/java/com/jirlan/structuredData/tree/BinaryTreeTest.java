@@ -43,6 +43,17 @@ class BinaryTreeTest {
     }
 
     @Test
+    public void levelOrderTreeTraversal() {
+        BinaryTree<Integer> tree = new BinaryTree<>();
+
+        for (Integer data : dataList) {
+            tree.insert(data);
+        }
+
+        assertEquals(List.of(45, 1, 89, 41, 56, 25, 78, 63), tree.levelOrderTraversal());
+    }
+
+    @Test
     public void shouldReturnTreeHeight() {
         BinaryTree<Integer> tree = new BinaryTree<>();
 
