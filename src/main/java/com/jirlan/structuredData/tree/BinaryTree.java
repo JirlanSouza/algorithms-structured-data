@@ -3,12 +3,10 @@ package com.jirlan.structuredData.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinaryTree<T extends Comparable<T>> {
     private Node<T> root;
-    private int leftPad;
-    private int rightPad;
 
-    void insert(T data) {
+    public void insert(T data) {
         Node<T> newNode = new Node<>(data);
 
         if (this.root == null) {
@@ -40,27 +38,47 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    public List<T> listAsc() {
-        return inOrderTraversal(this.root);
+    public List<T> preOrderTraversal() {
+        ArrayList<T> list = new ArrayList<>();
+        preOrderTraversal(this.root, list);
+
+        return list;
     }
 
-    public List<T> listDesc() {
+    public List<T> inOrderTraversal() {
+        ArrayList<T> list = new ArrayList<>();
+        inOrderTraversal(this.root, list);
+
+        return list;
+    }
+
+    public List<T> postOrderTraversal() {
         ArrayList<T> list = new ArrayList<>();
         postOrderTraversal(this.root, list);
 
         return list;
     }
 
-    private List<T> inOrderTraversal(Node<T> root) {
-        var list = new ArrayList<T>();
+    public int height() {
+        return height(this.root);
+    }
 
-        if (root != null) {
-            list.addAll(inOrderTraversal(root.left));
-            list.add(root.data);
-            list.addAll(inOrderTraversal(root.right));
-        }
+    private void preOrderTraversal(Node<T> root, List<T> list) {
+        if (root == null) return;
 
-        return list;
+        list.add(root.data);
+        inOrderTraversal(root.left, list);
+        inOrderTraversal(root.right, list);
+
+    }
+
+    private void inOrderTraversal(Node<T> root, List<T> list) {
+        if (root == null) return;
+
+        inOrderTraversal(root.left, list);
+        list.add(root.data);
+        inOrderTraversal(root.right, list);
+
     }
 
     private void postOrderTraversal(Node<T> root, List<T> list) {
