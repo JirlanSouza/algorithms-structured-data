@@ -5,7 +5,11 @@ import java.lang.reflect.Array;
 public class Queue<T> {
     private int head;
     private int tail;
-    private final T[] data;
+    private T[] data;
+
+    public Queue() {
+        this((Class<T>) Object.class, 16);
+    }
 
     public Queue(Class<T> type, int capacity) {
         data = (T[]) Array.newInstance(type, capacity);
