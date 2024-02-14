@@ -5,15 +5,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class SelectionSortTest {
+    private static final int[] UNSORTED_ARRAY = new int[]{22, 59, 89, 456, 1, 7, 45, 1295, 85};
+    private static final int[] EXPECTED_ARRAY = new int[]{1, 7, 22, 45, 59, 85, 89, 456, 1295};
 
     @Test
     void sortArray() {
-        int[] unsortedArray = new int[]{22, 59, 89, 456, 1, 7, 45, 1295, 85};
+        int[] sortedArray = SelectionSort.sort(UNSORTED_ARRAY.clone());
 
-        int[] sortedArray = SelectionSort.sort(unsortedArray);
+        assertArrayEquals(EXPECTED_ARRAY, sortedArray);
+    }
 
-        int[] expectedArray = new int[]{1, 7, 22, 45, 59, 85, 89, 456, 1295};
-        assertArrayEquals(expectedArray, sortedArray);
+    @Test
+    void sortArrayV2() {
+        int[] sortedArray = SelectionSortV2.sort(UNSORTED_ARRAY.clone());
+
+        assertArrayEquals(EXPECTED_ARRAY, sortedArray);
     }
 
 }
