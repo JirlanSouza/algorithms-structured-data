@@ -20,17 +20,17 @@ public class QuickSort {
 
     private static int partition(int[] array, int start, int end) {
         int pivot = array[end];
-        int i = start - 1;
+        int i = start;
         for (int j = start; j < end; j++) {
             if (array[j] < pivot) {
-                i++;
                 swap(array, i, j);
+                i++;
             }
         }
 
-        swap(array, i + 1, end);
+        swap(array, i, end);
 
-        return i + 1;
+        return i;
     }
 
     private static void swap(int[] array, int index1, int index2) {
